@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  background-color: #191212;
+}
+
+.hl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  margin-top: -400px;
+  margin-left: -400px;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle closest-side at 50%, rgba(56, 30, 30, 0.7), transparent);
+  transition: all 200ms linear;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  perspective: 1000px;
+}
+
+.container .tl:hover ~ .card {
+  transform: rotateX(25deg) rotateY(-5deg);
+}
+
+.container .tl:hover ~ .hl {
+  transform: translate(-40%, -15%);
+}
+
+.container .tc:hover ~ .card {
+  transform: rotateX(35deg);
+}
+
+.container .tc:hover ~ .hl {
+  transform: translate(0, -15%);
+}
+
+.container .tr:hover ~ .card {
+  transform: rotateX(25deg) rotateY(5deg);
+}
+
+.container .tr:hover ~ .hl {
+  transform: translate(40%, -15%);
+}
+
+.container .cl:hover ~ .card {
+  transform: rotateY(-25deg);
+}
+
+.container .cl:hover ~ .hl {
+  transform: translate(-40%, 0%);
+}
+
+.container .cr:hover ~ .card {
+  transform: rotateY(25deg);
+}
+
+.container .cr:hover ~ .hl {
+  transform: translate(40%, 0%);
+}
+
+.container .bl:hover ~ .card {
+  transform: rotateX(-25deg) rotateY(-15deg);
+}
+
+.container .bl:hover ~ .hl {
+  transform: translate(-40%, 15%);
+}
+
+.container .bc:hover ~ .card {
+  transform: rotateX(-35deg);
+}
+
+.container .bc:hover ~ .hl {
+  transform: translate(0, 15%);
+}
+
+.container .br:hover ~ .card {
+  transform: rotateX(-25deg) rotateY(15deg);
+}
+
+.container .br:hover ~ .hl {
+  transform: translate(40%, 15%);
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -120px -200px;
+  perspective: 150rem;
+  width: 400px;
+  height: 240px;
+  cursor: pointer;
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  margin: auto;
+  padding: 2em;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  color: rgb(49, 49, 49);
+  transition: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card .front h2,
+.card .back h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.75rem;
+}
+
+.card .front h4,
+.card .back h4 {
+  margin: 0.5em 0 1em;
+  font-size: 1rem;
+}
+
+.card .front .links,
+.card .back .links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .front a,
+.card .back a {
+  margin: 0.25em 0.5em;
+  text-decoration: none;
+  font-size: 2rem;
+  color: rgb(49, 49, 49);
+}
+
+.card .front {
+  z-index: 1;
+  align-items: center;
+  background-image: linear-gradient(135deg, #f78888, #b00101);
+  box-shadow: 0 6px 16px #7d0101, inset 0 0 15px #f78888;
+}
+
+.card .back {
+  align-items: center;
+  background-image: linear-gradient(135deg, #f78888, #b00101);
+  transform: rotateY(180deg);
+}
+
+#check {
+  display: none;
+}
+
+#check + label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -120px -200px;
+  z-index: 2;
+  width: 400px;
+  height: 240px;
+  cursor: pointer;
+}
+
+#check:checked + label ~ .card .front {
+  z-index: 0;
+  box-shadow: none;
+  transform: rotateY(-180deg);
+}
+
+#check:checked + label ~ .card .back {
+  box-shadow: 0 6px 16px #7d0101, inset 0 0 15px #f78888;
+  transform: rotateY(0deg);
+}
+
+canvas#neuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
